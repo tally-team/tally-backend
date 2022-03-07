@@ -2,10 +2,8 @@ const express = require('express')
 
 const app = express()
 
-
 //body parsing middleware
 app.use(express.json())
-
 
 //error handeling
 app.use((err, req, res, next) => {
