@@ -3,7 +3,7 @@ const PORT = process.env.PORT || 8080;
 const connectDB = require('./db')
 const mongoose = require('mongoose');
 
-const init = async () =>{
+const init = () =>{
     try{
         connectDB(app.settings.env);
         mongoose.connection.once('open', () =>{
