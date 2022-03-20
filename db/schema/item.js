@@ -14,7 +14,7 @@ const itemSchema = new mongoose.Schema({
     cost: Number,
     status: {
         type: String,
-        enum:['PENDING','PAID', 'CANCELLED'],
+        enum:['PAID', 'PENDING', 'CANCELLED'],
         default:'ONGOING'
     }
 })
