@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 const user = require('./user');
+const transaction = require('./transaction')
 
 const itemSchema = new mongoose.Schema({
-    id: String,
-    date: String,
-    tax: Number,
-    tip: Number,
+    uuid: String,
+    transaction: transaction,
     currency: {
         type: String,
         default: 'USD'
     },
-    total: Number,
-    creator: user,
-    status: String
+    itemName: String,
+    people: [user],
+    cost: Number,
+    status: {
+        type: String,
+        enum:['COMPLETED','ONGOING','DELETED'],
+        default:'ONGOING'
+    }
 })
 
 module.exports = itemSchema;
