@@ -3,11 +3,12 @@ const routes = require('./routes/api')
 
 const app = express()
 
-//express routes
-app.use('/api', routes);
-
 //body parsing middleware
 app.use(express.json())
+
+
+//express routes
+app.use('/api', routes);
 
 //error handeling
 app.use((err, req, res, next) => {

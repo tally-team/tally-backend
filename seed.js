@@ -10,26 +10,32 @@ const runSeed = () =>{
 
     const userSeed = [
         {
-            uuid: 'abc123',
+            uuid: '1',
             userName: 'userA',
             password: 'userAPass'
         },
         {
-            uuid: 'def456',
+            uuid: '2',
             userName: 'userB',
             password: 'userBPass'
         },
         {
-            uuid: 'ghi789',
+            uuid: '3',
             userName: 'userC',
             password: 'userCPass'
         }
     ]
 
     const seedDB = async () => {
-        await User.deleteMany({});
-        await User.insertMany({userSeed});
-        console.log('DB seed complete!')
+        try{
+            await User.deleteMany({});
+            await User.insertMany(userSeed);
+            console.log('DB seed complete!')
+        }
+        catch(e){
+            console.error(e);
+        }
+        
     }
 
     seedDB().then(()=>{
