@@ -1,6 +1,9 @@
-const express = require('express')
+const express = require('express');
+const routes = require('./routes/api')
 
 const app = express()
+
+app.use(routes);
 
 //body parsing middleware
 app.use(express.json())
