@@ -3,7 +3,8 @@ const routes = require('./routes/api')
 
 const app = express()
 
-app.use(routes);
+//express routes
+app.use('/api', routes);
 
 //body parsing middleware
 app.use(express.json())
