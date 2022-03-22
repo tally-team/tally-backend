@@ -3,7 +3,7 @@ backend app server for the tally mobile app
 
 ## to run application
 1. Start up mongodb (see database set up) either via brew services run or alias'ed command to start mongodb-community
-2. Run `npm run start`
+2. Run `npm run start-dev`
 
 ## database set up
 ### For mac users:
