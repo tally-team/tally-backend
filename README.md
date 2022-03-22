@@ -19,3 +19,6 @@ brew install mongodb-community
 
 ### For window users:
 1. Install [MongoDB CE v5.0.6](https://www.mongodb.com/try/download/community).
+
+### For WSL users:
+1. Follow [these instructions](https://docs.microsoft.com/en-us/windows/wsl/tutorials/wsl-database#install-mongodb) to install MongoDB.
