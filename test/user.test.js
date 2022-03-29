@@ -42,4 +42,20 @@ describe('user routes', () =>{
         })
 
     })
+    describe('POST route', () =>{
+        it('should add a new user to the database', async () =>{
+            const res = await request
+                .post('/api/users')
+                .send({
+                    uuid: '4',
+                    userName: 'testD',
+                    password: 'testPassD'
+                })
+
+            expect(res.status).toBe(200)
+            expect(res.body.uuid).toBe('4')
+            expect(res.body.userName).toBe('testD')
+            expect(res.body.password).toBe('testPassD')
+        })
+    })
 })
