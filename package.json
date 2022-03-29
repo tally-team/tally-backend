@@ -1,5 +1,8 @@
 {
   "name": "tally-backend",
+  "jest":{
+    "verbose": true
+  },
   "version": "1.0.0",
   "description": "A billsplitting mobile app",
   "scripts": {
