@@ -39,6 +39,7 @@ describe('user routes', () =>{
             expect(res.body[0].uuid).toBe(userTestData[0].uuid)
             expect(res.body[0].userName).toBe(userTestData[0].userName)
             expect(res.body[0].password).toBe(userTestData[0].password)
+            expect(res.body[0].preferredPaymentMethod).toBe(userTestData[0].preferredPaymentMethod)
         })
 
     })
@@ -56,6 +57,7 @@ describe('user routes', () =>{
             expect(res.body.uuid).toBe('4')
             expect(res.body.userName).toBe('testD')
             expect(res.body.password).toBe('testPassD')
+            expect(res.body.preferredPaymentMethod).toBe('CASH')
         })
     })
 })

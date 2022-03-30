@@ -12,17 +12,20 @@ const runSeed = () =>{
         {
             uuid: '1',
             userName: 'userA',
-            password: 'userAPass'
+            password: 'userAPass',
+            preferredPaymentMethod: 'CASH'
         },
         {
             uuid: '2',
             userName: 'userB',
-            password: 'userBPass'
+            password: 'userBPass',
+            preferredPaymentMethod: 'CASH'
         },
         {
             uuid: '3',
             userName: 'userC',
-            password: 'userCPass'
+            password: 'userCPass',
+            preferredPaymentMethod: 'CASH'
         }
     ]
 
