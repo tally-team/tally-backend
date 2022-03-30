@@ -33,7 +33,6 @@ describe('user routes', () =>{
     describe('GET route', () =>{
         it('should get all users from database', async () =>{
             const res = await request.get('/api/users');
-            //console.log(res)
             expect(res.status).toBe(200)
             expect(res.body.length).toBe(userTestData.length)
             expect(res.body[0].uuid).toBe(userTestData[0].uuid)
