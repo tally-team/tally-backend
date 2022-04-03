@@ -70,10 +70,10 @@ describe('user routes', () =>{
 
             expect(res.body.preferredPaymentMethod).toBe('CASH')
         })
-        //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
-        it('should throw an error if uuid, username, password is omitted', async () =>{
+        // //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
+        it('should throw an error if uuid, username, password is omitted', () =>{
                 try{  
-                    const res = await request
+                    const res = request
                     .post('/api/users')
                     .send({
                         uuid: '6',
