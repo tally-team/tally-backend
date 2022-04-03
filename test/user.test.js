@@ -72,13 +72,17 @@ describe('user routes', () =>{
         })
         //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
         it('should throw an error if uuid, username, password is omitted', async () =>{
-                const res = await request
-                .post('/api/users')
-                .send({
-                    uuid: '6',
-                    password: 'testPassF'
-                })
-                expect(res).toThrow('userName required')
+                try{  
+                    const res = await request
+                    .post('/api/users')
+                    .send({
+                        uuid: '6',
+                        password: 'testPassF'
+                    })
+                }
+                catch(err){
+                    expect(err.message).toBe('userName required')
+                }
         })
         it('should not take in any extra information past User Schema', async () =>{
             const res = await request
