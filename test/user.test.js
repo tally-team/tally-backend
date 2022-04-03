@@ -54,10 +54,12 @@ describe('user routes', () =>{
                 })
 
             expect(res.status).toBe(200)
-            expect(res.body.uuid).toBe('4')
-            expect(res.body.userName).toBe('testD')
-            expect(res.body.password).toBe('testPassD')
-            expect(res.body.preferredPaymentMethod).toBe('CASH')
+
+            const res2 = await request.get('/api/users');
+            expect(res2.body[3].uuid).toBe('4')
+            expect(res2.body[3].userName).toBe('testD')
+            expect(res2.body[3].password).toBe('testPassD')
+            expect(res2.body[3].preferredPaymentMethod).toBe('CASH')
         })
         it('should automatically add the default attribute for \'preferredPaymentMethod\' if omitted', async ()=>{
             const res = await request
@@ -67,8 +69,11 @@ describe('user routes', () =>{
                     userName: 'testE',
                     password: 'testPassE'
                 })
-
+            
             expect(res.body.preferredPaymentMethod).toBe('CASH')
+
+            const res2 = await request.get('/api/users');
+            expect(res2.body[3].preferredPaymentMethod).toBe('CASH')
         })
         // //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
         it('should throw an error if uuid, username, password is omitted', () =>{
@@ -95,6 +100,9 @@ describe('user routes', () =>{
                 })
 
             expect(res.body.extra).toBe(undefined)
+
+            const res2 = await request.get('/api/users');
+            expect(res2.body[3].extra).toBe(undefined)
         })
     })
 })
