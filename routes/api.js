@@ -10,7 +10,13 @@ router.get('/users', (req, res) =>{
 })
 
 router.post('/users', (req, res) =>{
-    User.create(req.body).then(function(user){
+    const newUser = {
+        uuid: req.body.uuid,
+        userName: req.body.userName,
+        password: req.body.password,
+        preferredPaymentMethod: req.body.preferredPaymentMethod
+    }
+    User.create(newUser).then(function(user){
         res.send(user);
     })
 })
