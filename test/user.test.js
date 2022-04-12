@@ -98,8 +98,12 @@ describe('user routes', () =>{
                     password: 'testPassE',
                     extra: 'extra_content'
                 })
-
+            
+            expect(res.body.uuid).toBe('5')
+            expect(res.body.userName).toBe('testE')
+            expect(res.body.password).toBe('testPassE')
             expect(res.body.extra).toBe(undefined)
+            
 
             const res2 = await request.get('/api/users');
             expect(res2.body[3].extra).toBe(undefined)
