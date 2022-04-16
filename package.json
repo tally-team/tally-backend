@@ -1,10 +1,14 @@
 {
   "name": "tally-backend",
+  "jest":{
+    "verbose": true
+  },
   "version": "1.0.0",
   "description": "A billsplitting mobile app",
   "scripts": {
-    "test": "jest",
-    "start": "node index"
+    "test": "jest ",
+    "start-dev": "nodemon index",
+    "seed" : "node seed"
   },
   "repository": {
     "type": "git",
@@ -23,6 +27,7 @@
   "devDependencies": {
     "jest": "^27.5.1",
     "mongodb-memory-server": "^8.4.0",
+    "nodemon": "^2.0.15",
     "supertest": "^6.2.2"
   }
 }
