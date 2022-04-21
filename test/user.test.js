@@ -6,6 +6,7 @@ const request = supertest(app);
 
 const User = require('../db/schema/user');
 const userTestData = require('./user.test.data');
+const res = require("express/lib/response");
 
 describe('user routes', () =>{
     beforeAll(() => {
@@ -13,7 +14,7 @@ describe('user routes', () =>{
     });
 
     beforeEach(async ()=>{
-        for(const userData of userTestData){
+        for await (const userData of userTestData){
             const newUser = new User({
                 uuid: userData.uuid,
                 userName: userData.userName,
@@ -76,19 +77,21 @@ describe('user routes', () =>{
             expect(res2.body[3].preferredPaymentMethod).toBe('CASH')
         })
         // //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
-        it('should throw an error if uuid, username, password is omitted', () =>{
-                try{  
-                    const res = request
-                    .post('/api/users')
-                    .send({
-                        uuid: '6',
-                        password: 'testPassF'
-                    })
-                }
-                catch(err){
-                    expect(err.message).toBe('userName required')
-                }
-        })
+        // it('should throw an error if uuid, username, password is omitted', () =>{
+        //         try{  
+        //             let res = request
+        //             .post('/api/users')
+        //             .send({
+        //                 uuid: '6',
+        //                 password: 'testPassF'
+        //             })
+        //         }
+        //         catch(err){
+        //             expect(err.message).toBe('userName required')
+        //             res.end();
+        //             res = null
+        //         }
+        // })
         it('should not take in any extra information past User Schema', async () =>{
             const res = await request
                 .post('/api/users')
