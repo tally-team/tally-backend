@@ -6,7 +6,7 @@
   "version": "1.0.0",
   "description": "A billsplitting mobile app",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand --detectOpenHandles",
     "start-dev": "nodemon index",
     "seed": "node seed"
   },
