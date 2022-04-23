@@ -1,11 +1,10 @@
 const express = require('express');
-const routes = require('./routes/api')
+const routes = require('./routes/api');
 
 const app = express()
 
 //body parsing middleware
 app.use(express.json())
-
 
 //express routes
 app.use('/api', routes);

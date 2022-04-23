@@ -1,14 +1,14 @@
 {
   "name": "tally-backend",
-  "jest":{
+  "jest": {
     "verbose": true
   },
   "version": "1.0.0",
   "description": "A billsplitting mobile app",
   "scripts": {
-    "test": "jest ",
+    "test": "jest",
     "start-dev": "nodemon index",
-    "seed" : "node seed"
+    "seed": "node seed"
   },
   "repository": {
     "type": "git",
