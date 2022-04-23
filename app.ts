@@ -1,3 +1,5 @@
+import { NextFunction, Request, Response } from "express";
+
 const express = require('express');
 const routes = require('./routes/api');
 
@@ -10,7 +12,7 @@ app.use(express.json())
 app.use('/api', routes);
 
 //error handeling
-app.use((err, req, res, next) => {
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   console.error(err)
   console.error(err.stack)
   res.status(err.status || 500).send(err.message || 'Internal server error.')
