@@ -77,21 +77,21 @@ describe('user routes', () =>{
             expect(res2.body[3].preferredPaymentMethod).toBe('CASH')
         })
 
-        // //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
-        // it('should throw an error if uuid, username, password is omitted', () =>{
-        //     try{  
-        //         const res = request
-        //         .post('/api/users')
-        //         .send({
-        //             uuid: '6',
-        //             password: 'testPassF'
-        //         })
-        //     }
-        //     catch(err){
-        //         request.close()
-        //         expect(err.message).toBe('userName required')
-        //     }
-        // })
+         //ATM UUID is passed in with making a post request, but should change this so a UUID is generated for the user
+         it('should throw an error if uuid, username, password is omitted', async () =>{
+             try{  
+                 const res = await request
+                 .post('/api/users')
+                 .send({
+                     uuid: '6',
+                     password: 'testPassF'
+                 })
+             }
+             catch(err){
+                 request.close()
+                 expect(err.message).toBe('userName required')
+             }
+         })
 
         it('should not take in any extra information past User Schema', async () =>{
             const res = await request

@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 
 const express = require('express');
 const router = express.Router();
@@ -13,8 +13,8 @@ router.get('/users', (req: Request, res: Response) =>{
     })
 })
 
-router.post('/users', (req: Request, res: Response) =>{
-    const newUser = {
+router.post('/users', (req: Request, res: Response, next: NextFunction) =>{
+        const newUser = {
         uuid: req.body.uuid,
         userName: req.body.userName,
         password: req.body.password,
@@ -22,6 +22,9 @@ router.post('/users', (req: Request, res: Response) =>{
     }
     User.create(newUser).then(function(user: FIX_ME){
         res.send(user);
+    }).catch((e:any) => {
+        console.log(e);
+        next(e)
     })
 })
 
