@@ -1,5 +1,3 @@
-const mongoose = require('mongoose');
-const user = require('./user');
 const transaction = require('./transaction')
 
 const itemSchema = new mongoose.Schema({
