@@ -1,9 +1,9 @@
-const { Schema } = require('mongoose');
+import mongoose from 'mongoose';
 
 const user = require('./user');
 const item = require('./item');
 
-const transactionSchema = new Schema({
+const transactionSchema = new mongoose.Schema({
     uuid: String,
     date: String,
     items: [item],

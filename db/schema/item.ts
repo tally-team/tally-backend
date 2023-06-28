@@ -1,4 +1,7 @@
+import mongoose from 'mongoose';
+
 const transaction = require('./transaction')
+const user = require('./user')
 
 const itemSchema = new mongoose.Schema({
     uuid: String,
