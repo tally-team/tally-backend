@@ -23,7 +23,6 @@ router.post('/users', (req: Request, res: Response, next: NextFunction) =>{
     User.create(newUser).then(function(user: FIX_ME){
         res.send(user);
     }).catch((e:any) => {
-        console.log(e);
         next(e)
     })
 })

@@ -31,6 +31,7 @@ describe('user routes', () =>{
     afterAll(() => {
         disconnectDatabase();
     });
+
     describe('GET route', () =>{
         it('should get all users from database', async () =>{
             const res = await request.get('/api/users');
