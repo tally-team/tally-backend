@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const User = require('./db/schema/user');
-const connectDB = require('./db');
+import mongoose from 'mongoose';
+import User from './db/schema/user';
+import connectDB from './db';
 
 const runSeed = () =>{
     connectDB('development')
