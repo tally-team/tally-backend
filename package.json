@@ -23,7 +23,7 @@
   "homepage": "https://github.com/tally-team/tally-backend#readme",
   "dependencies": {
     "express": "^4.17.3",
-    "mongoose": "^6.2.4"
+    "mongoose": "^6.4.6"
   },
   "devDependencies": {
     "@types/express": "^4.17.13",
