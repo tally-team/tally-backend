@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { MongoMemoryServer } = require('mongodb-memory-server');
 
 let mongo = new MongoMemoryServer;
-jest.setTimeout(60000);
 
 const connectDatabase = async () => {
   try {
@@ -16,8 +15,7 @@ const connectDatabase = async () => {
 
     await mongoose.connect(uri, mongooseOpts);
   } catch(error) {
-    console.log(error);
-    process.exit(1);
+    throw(error);
   }
 }
 
@@ -28,8 +26,7 @@ const disconnectDatabase = async () => {
     await mongo.stop();
     mongo = null;
   } catch(error) {
-    console.log(error);
-    process.exit(1);
+    throw(error);
   }
 };
 
