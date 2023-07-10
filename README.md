@@ -15,7 +15,7 @@ backend app server for the tally mobile app
 ```
 brew install mongodb-community
 ```
-3. Start mongodb via: `brew services run mongodb-community` or stop via `brew services run mongodb-community`.
+3. Start mongodb via: `brew services run mongodb-community` or stop via `brew services stop mongodb-community`.
 
 ### For window users:
 1. Install [MongoDB CE v5.0.6](https://www.mongodb.com/try/download/community).
