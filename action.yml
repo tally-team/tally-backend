@@ -1,0 +1,17 @@
+name: "Blocking Issues"
+description: "Labels issues and PRs when they're blocked"
+inputs: 
+  token: 
+    description: "The GitHub token to use. Make sure to use a Personal Access Token, so PRs can be updated." 
+    required: false
+    default: ${{ github.token }}
+  use-label: 
+    description: "The name of the label to apply to blocked issues or pull requests. If not found, the default value will be used."
+    required: false
+    default: "blocked"
+branding: 
+  icon: "git-pull-request"
+  color: "red"
+runs:
+  using: 'node16'
+  main: 'src/index.js'
