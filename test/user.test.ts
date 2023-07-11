@@ -1,8 +1,7 @@
 const { connectDatabase, disconnectDatabase } = require("../utils/test-utils/db.util");
-
 const supertest = require('supertest')
-const app = require('../app');
-const request = supertest(app);
+const testApp = require('../app');
+const request = supertest(testApp);
 
 const User = require('../db/schema/user');
 const userTestData = require('./user.test.data');
@@ -88,7 +87,7 @@ describe('user routes', () =>{
                      password: 'testPassF'
                  })
              }
-             catch(err){
+             catch(err: any){
                  request.close()
                  expect(err.message).toBe('userName required')
              }
