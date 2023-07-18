@@ -1,11 +1,13 @@
 import mongoose from 'mongoose';
 
-const config = require('../config');
+import config from '../config';
 
-module.exports =  async (mode: string) =>{
-    try{
-        await mongoose.connect(config.db[mode],{});
-    } catch(e){
-        console.log(e)
-    }
-}
+const connectDB = async (mode: string) => {
+  try {
+    await mongoose.connect(config.db[mode], {});
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export default connectDB;

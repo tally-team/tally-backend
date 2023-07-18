@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import {MongoMemoryServer} from 'mongodb-memory-server'
+import { MongoMemoryServer } from 'mongodb-memory-server';
 
 let mongo: MongoMemoryServer | null = null;
 
@@ -27,4 +27,4 @@ const disconnectDatabase = async () => {
   }
 };
 
-module.exports = { connectDatabase, disconnectDatabase };
+export { connectDatabase, disconnectDatabase };
