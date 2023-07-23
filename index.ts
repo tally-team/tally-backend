@@ -3,21 +3,21 @@ import connectDB from './db';
 import config from './config';
 import mongoose from 'mongoose';
 
-            const unusedVariable = "Hello, ESLint!";
+const unusedVariable = 'Hello, ESLint!';
 
-const init = () =>{
-    const MODE = app.settings.env
-    const PORT = config.port[MODE]
+const init = () => {
+  const MODE = app.settings.env;
+  const PORT = config.port[MODE];
 
-    try{
-        connectDB(MODE);
-        mongoose.connection.once('open', () =>{
-            console.log("Connected to mongoDB");
-            app.listen(PORT,()=> console.log(`Listening on port ${PORT}`));
-        })
-    } catch(e){
-        throw(e);
-    }
+  try {
+    connectDB(MODE);
+    mongoose.connection.once('open', () => {
+      console.log('Connected to mongoDB');
+      app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+    });
+  } catch (e) {
+    throw e;
+  }
 };
 
 init();
