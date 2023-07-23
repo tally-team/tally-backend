@@ -3,7 +3,7 @@ import connectDB from './db';
 import config from './config';
 import mongoose from 'mongoose';
 
-        const unusedVariable = "Hello, ESLint!";
+            const unusedVariable = "Hello, ESLint!";
 
 const init = () =>{
     const MODE = app.settings.env

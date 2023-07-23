@@ -45,5 +45,9 @@
     "supertest": "^6.2.2",
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0"
+  },
+  "lint-staged": {
+    "*.{ts, js}": "eslint --fix",
+    "*.{ts, js, md}": "prettier --write"
   }
 }
