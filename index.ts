@@ -1,7 +1,7 @@
-const app = require('./app');
-const connectDB = require('./db');
-const config = require('./config');
-const mongoose = require('mongoose');
+import app from './app';
+import connectDB from './db';
+import config from './config';
+import mongoose from 'mongoose';
 
 const init = () =>{
     const MODE = app.settings.env

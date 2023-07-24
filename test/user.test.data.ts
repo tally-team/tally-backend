@@ -19,4 +19,4 @@ const userSeed = [
     }
 ]
 
-module.exports = userSeed;
+export default userSeed;

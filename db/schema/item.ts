@@ -1,23 +1,23 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
-const transaction = require('./transaction')
-const user = require('./user')
+import transaction from './transaction';
+import user from './user';
 
-const itemSchema = new mongoose.Schema({
-    uuid: String,
-    transaction: transaction,
-    currency: {
-        type: String,
-        default: 'USD'
-    },
-    itemName: String,
-    people: [user],
-    cost: Number,
-    status: {
-        type: String,
-        enum:['PAID', 'PENDING', 'CANCELLED'],
-        default:'PENDING'
-    }
-})
+const itemSchema: Schema = new mongoose.Schema({
+  uuid: String,
+  transaction: transaction,
+  currency: {
+    type: String,
+    default: 'USD',
+  },
+  itemName: String,
+  people: [user],
+  cost: Number,
+  status: {
+    type: String,
+    enum: ['PAID', 'PENDING', 'CANCELLED'],
+    default: 'PENDING',
+  },
+});
 
-module.exports = itemSchema;
+export default itemSchema;
