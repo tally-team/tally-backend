@@ -23,7 +23,7 @@
     "rules": {
         // prevent eslint to complain about the "styles" variable being used before it was defined
         "@typescript-eslint/no-use-before-define": ["error", { "variables": false }],
-        "@typescript-eslint/no-unused-vars": "warn",
+        "@typescript-eslint/no-unused-vars": "error",
         "@typescript-eslint/no-explicit-any": "off",
         "no-useless-catch": "warn"
     }
