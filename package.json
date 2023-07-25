@@ -46,6 +46,10 @@
     "ts-jest": "^27.1.4",
     "ts-node": "^10.7.0"
   },
+  "engines": {
+    "npm": "^9.5.1",
+    "node": "^18.16.1"
+  },
   "lint-staged": {
     "*.{ts, js}": "eslint --fix",
     "*.{ts, js, md}": "prettier --write"
