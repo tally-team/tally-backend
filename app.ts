@@ -2,8 +2,15 @@ import { NextFunction, Request, Response } from 'express';
 
 import express from 'express';
 import routes from './routes/api';
+import cors from 'cors';
 
 const app = express();
+
+// currently only setting allowed origin for local dev
+// need to enable cors since the FE makes an API call to the server from a different port
+app.use(cors({
+  origin: /^http:\/\/localhost:[0-9]+/
+}));
 
 //body parsing middleware
 app.use(express.json());
