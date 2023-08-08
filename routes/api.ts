@@ -9,26 +9,7 @@ type FIX_ME = unknown;
 //currently hosing user route, will split off individual schema routes in the future
 router.get('/users', (req: Request, res: Response) => {
   User.find({}).then(function (users: FIX_ME) {
-    res.send([
-      {
-          uuid: '1',
-          userName: 'testA',
-          password: 'testPassA',
-          preferredPaymentMethod: 'CASH'
-      },
-      {
-          uuid: '2',
-          userName: 'testB',
-          password: 'testPassB',
-          preferredPaymentMethod: 'CASH'
-      },
-      {
-          uuid: '3',
-          userName: 'testC',
-          password: 'testPassC',
-          preferredPaymentMethod: 'CASH'
-      }
-  ]);
+    res.send(users);
   });
 });
 
