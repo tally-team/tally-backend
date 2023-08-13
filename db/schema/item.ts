@@ -1,23 +1,13 @@
 import mongoose, { Schema } from 'mongoose';
 
-import transaction from './transaction';
-import user from './user';
+import currency from './currency';
 
 const itemSchema: Schema = new mongoose.Schema({
-  uuid: String,
-  transaction: transaction,
-  currency: {
-    type: String,
-    default: 'USD',
-  },
-  itemName: String,
-  people: [user],
+  id: String,
+  currency: currency,
+  name: String,
+  people: [String],
   cost: Number,
-  status: {
-    type: String,
-    enum: ['PAID', 'PENDING', 'CANCELLED'],
-    default: 'PENDING',
-  },
 });
 
 export default itemSchema;
