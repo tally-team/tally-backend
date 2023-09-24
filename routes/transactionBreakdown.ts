@@ -2,30 +2,20 @@ import { Request, Response } from 'express';
 import express from 'express';
 const router = express.Router();
 
-const createItemList = (items: Array<any>) => {
-  return items.map((individual: any, ind: number) => {
-    const indItem = {
-      id: ind,
-      name: individual.name,
-      people: individual.people,
-      cost: individual.cost,
-    };
-    return indItem;
-  });
+const getOrderItemsTotal = (item: any, currTotal: number) => {
+  return Math.round((item.cost / item.people.length) * 100) / 100 + currTotal;
 };
 
-const getSubAmount = (orderItems: Array<any>, name: string = '') => {
-  let total = 0;
-  for (const item of orderItems) {
-    if (name) {
-      if (item.people.includes(name)) {
-        total += Math.round((item.cost / item.people.length) * 100) / 100;
-      }
-    } else {
-      total += item.cost;
-    }
-  }
-  return total;
+const getSubAmountPerson = (orderItems: Array<any>, name: string = '') => {
+  return orderItems.reduce(
+    (currTotal, currItem) =>
+      name && currItem.people.includes(name) ? getOrderItemsTotal(currItem, currTotal) : currTotal,
+    0
+  );
+};
+
+const getSubAmountTransaction = (orderItems: Array<any>) => {
+  return orderItems.reduce((currTotal, currItem) => currTotal + currItem.cost, 0);
 };
 
 const createOrderTransaction = (
@@ -34,7 +24,7 @@ const createOrderTransaction = (
   tip: number,
   party: Array<string>
 ) => {
-  const subAmount = getSubAmount(items);
+  const subAmount = getSubAmountTransaction(items);
 
   return {
     id: 1,
@@ -52,10 +42,10 @@ const createOrderTransaction = (
 };
 
 const getPersonCost = (name: string, orderList: Array<any>, orderTransaction: any) => {
-  const subAmount = getSubAmount(orderList, name),
-    costRatio = subAmount / orderTransaction.amountDetail.subAmount,
-    tax = Math.ceil(orderTransaction.amountDetail.tax * costRatio * 100) / 100,
-    tip = Math.ceil(orderTransaction.amountDetail.tip * costRatio * 100) / 100;
+  const subAmount = getSubAmountPerson(orderList, name);
+  const costRatio = subAmount / orderTransaction.amountDetail.subAmount;
+  const tax = Math.ceil(orderTransaction.amountDetail.tax * costRatio * 100) / 100;
+  const tip = Math.ceil(orderTransaction.amountDetail.tip * costRatio * 100) / 100;
 
   const totalAmount = subAmount + tax + tip;
   return {
@@ -68,7 +58,7 @@ const getPersonCost = (name: string, orderList: Array<any>, orderTransaction: an
 
 const personItemList = (name: string, orderList: Array<any>) => {
   return orderList.filter((item) => {
-    return item.people.includes(name);
+    item.people.includes(name);
   });
 };
 
@@ -78,7 +68,6 @@ const createTransactionPersons = (
   orderTransaction: any
 ) => {
   return party.map((indPerson: string, index: number) => {
-    const personCost = getPersonCost(indPerson, orderItems, orderTransaction);
     return {
       id: index,
       person: indPerson,
@@ -86,7 +75,7 @@ const createTransactionPersons = (
       amountDetail: {
         id: index,
         transactionPersonId: index,
-        ...personCost,
+        ...getPersonCost(indPerson, orderItems, orderTransaction),
       },
       items: personItemList(indPerson, orderItems),
       status: 1,
@@ -99,9 +88,9 @@ router.post('/transactionBreakdown', (req: Request, res: Response) => {
   if (items == null || tax == null || tip == null || party == null) {
     return res.status(400).send('Missing content in payload');
   }
-  const orderItems = createItemList(items);
-  const orderTransaction = createOrderTransaction(orderItems, tax, tip, party);
-  const orderTransactionPersons = createTransactionPersons(party, orderItems, orderTransaction);
+
+  const orderTransaction = createOrderTransaction(items, tax, tip, party);
+  const orderTransactionPersons = createTransactionPersons(party, items, orderTransaction);
 
   res.send({ orderTransaction, orderTransactionPersons });
   return;
