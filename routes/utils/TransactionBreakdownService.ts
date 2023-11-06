@@ -28,7 +28,7 @@ const createOrderTransaction = (
     people: party,
     amountDetail: {
       id: 1,
-      transactionId: 3,
+      transactionId: 1,
       amount: subAmount + tax + tip,
       subAmount: subAmount,
       tax: tax,
@@ -47,8 +47,8 @@ const getPersonItemList = (name: string, orderList: Array<any>, orderTransaction
   return {
     amount: totalAmount,
     subAmount: subAmount,
-    tip: tip,
     tax: tax,
+    tip: tip,
   };
 };
 
@@ -63,12 +63,11 @@ const createTransactionPersons = (
 ) => {
   return party.map((indPerson: string, index: number) => {
     return {
-      id: index,
+      id: index + 1,
       person: indPerson,
       transaction: 1,
       amountDetail: {
-        id: index,
-        transactionPersonId: index,
+        transactionPersonId: index + 1,
         ...getPersonItemList(indPerson, orderItems, orderTransaction),
       },
       items: personItemList(indPerson, orderItems),
