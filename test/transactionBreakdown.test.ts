@@ -16,11 +16,11 @@ describe('transactionBreakdown routes', () => {
   });
 
   describe('POST route', () => {
-    it('should return a transactionBreakdown with accurate orderTransaction', async () => {
+    it('should return a transactionBreakdown with accurate orderTransaction and orderTransactionPersons', async () => {
       const res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownNormal);
-      const { orderTransaction } = res.body;
+      const { orderTransaction, orderTransactionPersons } = res.body;
 
       expect(res.status).toBe(200);
       expect(
@@ -29,18 +29,6 @@ describe('transactionBreakdown routes', () => {
           transactionBreakdownSeed.transactionNormalComparison.orderTransaction
         )
       ).toBe(true);
-    });
-
-    it('should return a transactionBreakdown with accurate orderTransactionPersons', async () => {
-      const res = await request
-        .post('/api/transactionBreakdown')
-        .send(transactionBreakdownSeed.transactionBreakdownNormal);
-      const { orderTransactionPersons } = res.body;
-      console.log(
-        orderTransactionPersons,
-        transactionBreakdownSeed.transactionNormalComparison.orderTransactionPersons
-      );
-      expect(res.status).toBe(200);
       expect(
         _.isEqual(
           orderTransactionPersons,
@@ -49,21 +37,28 @@ describe('transactionBreakdown routes', () => {
       ).toBe(true);
     });
 
-    it('should return a transactionBreakdown even with 0 values', async () => {
+    it('should return a transactionBreakdown even with 0 tip', async () => {
       const res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownZeroTip);
       const { orderTransaction, orderTransactionPersons } = res.body;
 
       expect(res.status).toBe(200);
-      expect(orderTransaction.amountDetail.amount).toBe(14.15);
-      expect(orderTransactionPersons[0].amountDetail.amount).toBe(5.45);
-      expect(orderTransactionPersons[0].amountDetail.subAmount).toBe(5.0);
-      expect(orderTransactionPersons[0].amountDetail.tax).toBe(0.45);
-      expect(orderTransactionPersons[0].amountDetail.tip).toBe(0);
+      expect(
+        _.isEqual(
+          orderTransaction,
+          transactionBreakdownSeed.transactionZeroTipComparison.orderTransaction
+        )
+      ).toBe(true);
+      expect(
+        _.isEqual(
+          orderTransactionPersons,
+          transactionBreakdownSeed.transactionZeroTipComparison.orderTransactionPersons
+        )
+      ).toBe(true);
     });
 
-    it('should throw an error if tax and tip are omitted', async () => {
+    it('should throw an error if any field (tax, tip, party and/or items) are omitted', async () => {
       let res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownMissingTax);
