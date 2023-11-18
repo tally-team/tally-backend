@@ -12,9 +12,7 @@ router.post(
   transactionBreakdownDataValidation(transactionBreakdownSchema.data),
   (req: Request, res: Response) => {
     const { items, tax, tip, party } = req.body;
-    if (items == null || tax == null || tip == null || party == null) {
-      return res.status(400).send('Missing content in payload');
-    }
+
     const transactionBreakdown = getTransactionBreakdown(items, tax, tip, party);
     return res.send(transactionBreakdown);
   }

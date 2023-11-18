@@ -63,25 +63,21 @@ describe('transactionBreakdown routes', () => {
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownMissingTax);
       expect(res.status).toBe(400);
-      expect(res.text).toBe('Missing content in payload');
 
       res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownMissingTip);
       expect(res.status).toBe(400);
-      expect(res.text).toBe('Missing content in payload');
 
       res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownMissingParty);
       expect(res.status).toBe(400);
-      expect(res.text).toBe('Missing content in payload');
 
       res = await request
         .post('/api/transactionBreakdown')
         .send(transactionBreakdownSeed.transactionBreakdownMissingItems);
       expect(res.status).toBe(400);
-      expect(res.text).toBe('Missing content in payload');
     });
   });
 });
