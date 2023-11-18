@@ -79,5 +79,29 @@ describe('transactionBreakdown routes', () => {
         .send(transactionBreakdownSeed.transactionBreakdownMissingItems);
       expect(res.status).toBe(400);
     });
+
+    it('should throw an error if negative value is sent for tax, tip or item costs', async () => {
+      let res = await request
+        .post('/api/transactionBreakdown')
+        .send(transactionBreakdownSeed.transactionBreakdownNegativeTax);
+      expect(res.status).toBe(400);
+
+      res = await request
+        .post('/api/transactionBreakdown')
+        .send(transactionBreakdownSeed.transactionBreakdownNegativeTip);
+      expect(res.status).toBe(400);
+
+      res = await request
+        .post('/api/transactionBreakdown')
+        .send(transactionBreakdownSeed.transactionBreakdownNegativeItemCost);
+      expect(res.status).toBe(400);
+    });
+
+    it('should throw an error if item is empty', async () => {
+      const res = await request
+        .post('/api/transactionBreakdown')
+        .send(transactionBreakdownSeed.transactionBreakdownEmptyItem);
+      expect(res.status).toBe(400);
+    });
   });
 });

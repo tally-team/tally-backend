@@ -16,6 +16,7 @@ export const transactionBreakdownDataValidation = (schema: ObjectSchema) => {
 export const transactionBreakdownSchema = {
   data: Joi.object({
     items: Joi.array()
+      .min(1)
       .items(
         Joi.object({
           name: Joi.string().required(),

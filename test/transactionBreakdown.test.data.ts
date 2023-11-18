@@ -219,6 +219,63 @@ const payloadSeed = {
     tip: 3.25,
     party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
   },
+  transactionBreakdownNegativeTip: {
+    items: [
+      {
+        name: 'chicken soup',
+        cost: 4.0,
+        people: ['Michelle', 'Cindy'],
+      },
+      {
+        name: 'sushi',
+        cost: 9.0,
+        people: ['Michelle', 'Joanne', 'Ellie'],
+      },
+    ],
+    tax: -1.15,
+    tip: 3.25,
+    party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
+  },
+  transactionBreakdownNegativeTax: {
+    items: [
+      {
+        name: 'chicken soup',
+        cost: 4.0,
+        people: ['Michelle', 'Cindy'],
+      },
+      {
+        name: 'sushi',
+        cost: 9.0,
+        people: ['Michelle', 'Joanne', 'Ellie'],
+      },
+    ],
+    tax: 1.15,
+    tip: -3.25,
+    party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
+  },
+  transactionBreakdownNegativeItemCost: {
+    items: [
+      {
+        name: 'chicken soup',
+        cost: -4.0,
+        people: ['Michelle', 'Cindy'],
+      },
+      {
+        name: 'sushi',
+        cost: 9.0,
+        people: ['Michelle', 'Joanne', 'Ellie'],
+      },
+    ],
+    tax: 1.15,
+    tip: -3.25,
+    party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
+  },
+  transactionBreakdownEmptyItem: {
+    items: [],
+    tax: 1.15,
+    tip: -3.25,
+    party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
+  },
 };
 
 export default payloadSeed;
