@@ -1,17 +1,5 @@
-import Joi, { ObjectSchema } from 'joi';
-import { NextFunction, Request, Response } from 'express';
+import Joi from 'joi';
 
-export const transactionBreakdownDataValidation = (schema: ObjectSchema) => {
-  return async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      await schema.validateAsync(req.body);
-      next();
-    } catch (error) {
-      console.error(error);
-      return res.status(400).json({ error });
-    }
-  };
-};
 /* @todo implement previously defined schema when we start sending real data */
 export const transactionBreakdownSchema = {
   data: Joi.object({

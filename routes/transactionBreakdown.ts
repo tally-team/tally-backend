@@ -1,15 +1,13 @@
 import { Request, Response } from 'express';
 import { getTransactionBreakdown } from './utils/TransactionBreakdownService';
-import {
-  transactionBreakdownSchema,
-  transactionBreakdownDataValidation,
-} from '../middleware/transactionBreakdownDataValidation';
+import { requestInputSchemaValidator } from '../middleware/RequestInputSchemaValidator';
+import { transactionBreakdownSchema } from '../middleware/RequestItemSchemas/transactionBreakdownSchema';
 import express from 'express';
 const router = express.Router();
 
 router.post(
   '/transactionBreakdown',
-  transactionBreakdownDataValidation(transactionBreakdownSchema.data),
+  requestInputSchemaValidator(transactionBreakdownSchema.data),
   (req: Request, res: Response) => {
     const { items, tax, tip, party } = req.body;
 
