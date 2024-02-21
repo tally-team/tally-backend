@@ -213,6 +213,7 @@ const payloadSeed = {
       },
     ],
     tax: 1.15,
+    tip: 3.25,
   },
   transactionBreakdownMissingItems: {
     tax: 1.15,
@@ -232,8 +233,8 @@ const payloadSeed = {
         people: ['Michelle', 'Joanne', 'Ellie'],
       },
     ],
-    tax: -1.15,
-    tip: 3.25,
+    tax: 1.15,
+    tip: -3.25,
     party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
   },
   transactionBreakdownNegativeTax: {
@@ -249,8 +250,8 @@ const payloadSeed = {
         people: ['Michelle', 'Joanne', 'Ellie'],
       },
     ],
-    tax: 1.15,
-    tip: -3.25,
+    tax: -1.15,
+    tip: 3.25,
     party: ['Michelle', 'Cindy', 'Joanne', 'Ellie'],
   },
   transactionBreakdownNegativeItemCost: {
