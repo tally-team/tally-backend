@@ -8,7 +8,7 @@ export const transactionBreakdownSchema = {
       .items(
         Joi.object({
           name: Joi.string().required(),
-          cost: Joi.number().min(0).required(),
+          cost: Joi.number().positive().required(),
           people: Joi.array().items(Joi.string()).required(),
         })
       )
